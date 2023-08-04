@@ -1,0 +1,100 @@
+﻿@model TesteBC.Web.Models.LancamentoModel
+
+@{
+    ViewData["Title"] = "Lançamento";
+}
+
+<h1>Lançamento</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idLancamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idLancamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dtVencimento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dtVencimento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dtPagamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dtPagamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vlLancamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vlLancamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vlDesconto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vlDesconto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vlJurosMora)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vlJurosMora)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vlEncargos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vlEncargos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.flCredito)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.flCredito)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.codBarras)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.codBarras)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.instituicaoEmissora)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.instituicaoEmissora)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.agencia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.agencia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.contaCorrente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.contaCorrente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.entidadeId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.entidadeNome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="LancamentoLista">Voltar</a>
+</div>

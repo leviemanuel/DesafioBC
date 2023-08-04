@@ -1,0 +1,58 @@
+﻿@model TesteBC.Web.Models.EntidadeModel
+
+@{
+    ViewData["Title"] = "Nova Entidade";
+}
+
+<h1>Nova Entidade</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EntidadeCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display: none">
+                <label asp-for="idEntidade" class="control-label"></label>
+                <input asp-for="idEntidade" class="form-control"  />
+                <span asp-validation-for="idEntidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="flPessoaFisica" /> @Html.DisplayNameFor(model => model.flPessoaFisica)
+                </label>
+            </div>
+            @*            <div class="form-group">
+                <label asp-for="tipoPessoa" class="control-label"></label>
+                <input asp-for="tipoPessoa" class="form-control" />
+                <span asp-validation-for="tipoPessoa" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="documento" class="control-label"></label>
+                <input asp-for="documento" class="form-control" />
+                <span asp-validation-for="documento" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="flAtivo" /> @Html.DisplayNameFor(model => model.flAtivo)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="EntidadeLista">Voltar</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

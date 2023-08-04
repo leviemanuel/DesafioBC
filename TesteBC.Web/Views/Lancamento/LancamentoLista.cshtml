@@ -1,0 +1,113 @@
+﻿@model IEnumerable<TesteBC.Web.Models.LancamentoModel>
+
+@{
+    ViewData["Title"] = "Lançamentos";
+}
+
+<h1>Lançamentos</h1>
+
+<p>
+    <a asp-action="LancamentoCreate">Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.idLancamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dtVencimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dtPagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vlLancamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vlDesconto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vlJurosMora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vlEncargos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flCredito)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.codBarras)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.instituicaoEmissora)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.agencia)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.contaCorrente)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.entidadeId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.idLancamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtVencimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtPagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vlLancamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vlDesconto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vlJurosMora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vlEncargos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.flCredito)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.codBarras)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.instituicaoEmissora)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.agencia)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.contaCorrente)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.entidadeId)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "LancamentoAlter", new {id = item.idLancamento}) |
+                @Html.ActionLink("Detalhes", "LancamentoDetail" , new {id = item.idLancamento}) |
+                @Html.ActionLink("Remover", "LancamentoRemove" , new {id = item.idLancamento}) )
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

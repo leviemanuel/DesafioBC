@@ -1,0 +1,133 @@
+﻿@model TesteBC.Web.Models.LancamentoModel
+
+@{
+    ViewData["Title"] = "Novo Lançamento";
+}
+
+<h1>Novo Lançamento</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LancamentoCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display: none">
+                <label asp-for="idLancamento" class="control-label"></label>
+                <input asp-for="idLancamento" class="form-control" />
+                <span asp-validation-for="idLancamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descricao" class="control-label"></label>
+                <input asp-for="descricao" class="form-control" />
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dtVencimento" class="control-label"></label>
+                <input asp-for="dtVencimento" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+                <span asp-validation-for="dtVencimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dtPagamento" class="control-label"></label>
+                <input asp-for="dtPagamento" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+                <span asp-validation-for="dtPagamento" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="vlLancamento" class="control-label"></label>
+                <input asp-for="vlLancamento" class="form-control" id="vlLancamento" />
+                <span asp-validation-for="vlLancamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vlLancamento_ptbr" class="control-label"></label>
+                <input asp-for="vlLancamento_ptbr" class="form-control" id="vlLancamento_ptbr" onKeyPress="KeyUp('vlLancamento_ptbr', 'vlLancamento')" onKeyUp="KeyUp('vlLancamento_ptbr', 'vlLancamento')" />
+                <span asp-validation-for="vlLancamento_ptbr" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="vlDesconto" class="control-label"></label>
+                <input asp-for="vlDesconto" class="form-control" id="vlDesconto" />
+                <span asp-validation-for="vlDesconto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vlDesconto_ptbr" class="control-label"></label>
+                <input asp-for="vlDesconto_ptbr" class="form-control" id="vlDesconto_ptbr" onKeyPress="KeyUp('vlDesconto_ptbr', 'vlDesconto')" onKeyUp="KeyUp('vlDesconto_ptbr', 'vlDesconto')" />
+                <span asp-validation-for="vlDesconto" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="vlJurosMora" class="control-label"></label>
+                <input asp-for="vlJurosMora" class="form-control" id="vlJurosMora" />
+                <span asp-validation-for="vlJurosMora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vlJurosMora_ptbr" class="control-label"></label>
+                <input asp-for="vlJurosMora_ptbr" class="form-control" id="vlJurosMora_ptbr" onKeyPress="KeyUp('vlJurosMora_ptbr', 'vlJurosMora')" onKeyUp="KeyUp('vlJurosMora_ptbr', 'vlJurosMora')" />
+                <span asp-validation-for="vlJurosMora" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="vlEncargos" class="control-label"></label>
+                <input asp-for="vlEncargos" class="form-control" />
+                <span asp-validation-for="vlEncargos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vlEncargos_ptbr" class="control-label"></label>
+                <input asp-for="vlEncargos_ptbr" class="form-control" id="vlEncargos_ptbr" onKeyPress="KeyUp('vlEncargos_ptbr', 'vlEncargos')" onKeyUp="KeyUp('vlEncargos_ptbr', 'vlEncargos')" />
+                <span asp-validation-for="vlEncargos" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="flCredito" /> @Html.DisplayNameFor(model => model.flCredito)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="codBarras" class="control-label"></label>
+                <input asp-for="codBarras" class="form-control" />
+                <span asp-validation-for="codBarras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="instituicaoEmissora" class="control-label"></label>
+                <input asp-for="instituicaoEmissora" class="form-control" />
+                <span asp-validation-for="instituicaoEmissora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="agencia" class="control-label"></label>
+                <input asp-for="agencia" class="form-control" />
+                <span asp-validation-for="agencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="contaCorrente" class="control-label"></label>
+                <input asp-for="contaCorrente" class="form-control" />
+                <span asp-validation-for="contaCorrente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="entidadeId" class="control-label"></label>
+                <select asp-for="entidadeId" id="ddlEntidades" asp-items="@Model.entidades" style="width:100%;">
+                    <option value="0">Selecione...</option>
+                </select>
+                <span asp-validation-for="entidadeId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="LancamentoLista">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+        function KeyUp(txtPtBr, txtEnUs)
+    {
+            var ptbr = document.getElementById(txtPtBr);
+            var valor = ptbr.value.replace('.', '').replace(',', '.');
+
+            var enUS = document.getElementById(txtEnUs);
+            enUS.value = valor;
+            enUS.value = valor;
+    }
+</script>
+

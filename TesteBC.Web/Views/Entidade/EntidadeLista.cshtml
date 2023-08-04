@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TesteBC.Web.Models.EntidadeModel>
+
+@{
+    ViewData["Title"] = "Entidades";
+}
+
+<h1>Entidades</h1>
+
+<p>
+    <a asp-controller="Entidade" asp-action="EntidadeCreate">Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.idEntidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoPessoa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flAtivo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="display: none">
+                    @Html.DisplayFor(modelItem => item.idEntidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoPessoa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.flAtivo)
+                </td>
+                <td>
+                    @Html.ActionLink("Alterar", "EntidadeAlter", new {id = item.idEntidade}) |
+                    @Html.ActionLink("Remover", "EntidadeRemove", new {id = item.idEntidade})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

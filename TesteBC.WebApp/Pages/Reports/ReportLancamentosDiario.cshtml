@@ -1,0 +1,88 @@
+﻿@model IEnumerable<TesteBC.WebApp.Models.Report.LancamentoDiarioReportResult>
+
+@{
+    ViewData["Title"] = "Report Diário";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dtVencimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dtPagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vlTotal)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.nome)
+                </td>
+                <td>
+                    @Html.Raw(item.descricao)
+                </td>
+                <td>
+                    @Html.Raw(item.dtVencimento.ToString("dd/MM/yyyy"))
+                </td>
+                <td>
+                    @Html.Raw(item.dtPagamento.ToString("dd/MM/yyyy"))
+                </td>
+
+                <td>
+                    @if (item.flCredito)
+                    {
+                        <div style="color:forestgreen">
+                            @Html.Raw(item.vlTotal.ToString("#,##0.00"))
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="color:darkred">
+                            @Html.Raw((item.vlTotal *-1).ToString("#,##0.00"))
+                        </div>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr style="font-weight:700">
+            <td colspan="4" style="text-align: right;">
+                Total:
+            </td>
+            <td>
+                @{
+                    float total = Model.Sum(item => item.flCredito ? item.vlTotal : (item.vlTotal * -1));
+                    if (total < 0)
+                    {
+                        <div style="color:darkred">
+                            @Html.Raw(total.ToString("#,##0.00"))
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="color:forestgreen">
+                            @Html.Raw(total.ToString("#,##0.00"))
+                        </div>
+                    }
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
