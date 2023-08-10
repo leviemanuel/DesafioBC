@@ -22,20 +22,41 @@ Para que possa rodar o projeto, é necessário preencher os seguintes pré-requi
 
 (Caso queira, pode usar também o Docker)
 
-No arquivo appsettings.json, ajuste a connection string para seu servidor de banco de dados.
-
-Abra o prompt de comando e, após navegar até a pasta do projeto de infraestrutura, digite:
+Iniciando o processo para rodar o projeto, vá até a pasta da API (TesteBC.Api)
+No arquivo appsettings.Development.json, ajuste a connection string para seu servidor de banco de dados.
 ```
-dotnet ef migrations add InitialStructure --project TesteBC.Infrastructure
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "defaultCon": "server=localhost;database=novoTesteBC;user=COLOQUEOUSUARIOAQUI;password=COLOQUEASENHAAQUI"
+  }
+}
 ```
 
+Após salvar o arquivo, abra o prompt de comando e, após navegar até a pasta do projeto de infraestrutura (TesteBC.Infrastructure), digite:
+```
+dotnet ef --startup-project ../TesteBC.Api migrations add InfraInicial -c TesteBCDBContext
+```
+Aparecendo a mensagem de sucesso, navegue até a pasta do projeto de API com:
+```
+cd ..\TesteBC.Api
+```
+Após isso, execute a criação com:
+```
+dotnet ef database update
+```
 Agora navegue até a pasta do projeto API e rode-o com o seguinte comando:
 ```
 dotnet run
 ```
 A API pode ser acessada pelo endereço: <b>https://localhost:7092/swagger/index.html</b>
 
-Após isso, navegue até a pasta do projeto Web e rode-o com o seguinte comando:
+Após isso, navegue até a pasta do projeto Web e, abrindo um powershell na pasta, execute o seguinte comando:
 ```
 dotnet run
 ```
@@ -45,6 +66,13 @@ Você pode acessá-lo pelo caminho: <b>https://localhost:7092/swagger/index.html
 Mas se quiser testar pelo projeto de testes, navegue até a pasta dele e execute o seguinte comando:
 ```
 dotnet test
+```
+As seguintes mensagens devem ser apresentadas:
+```
+Iniciando execução de teste, espere...
+1 arquivos de teste no total corresponderam ao padrão especificado.
+
+Aprovado!  - Com falha:     0, Aprovado:    10, Ignorado:     0, Total:    10, Duração: 68 ms - TesteBC.Tests.dll (net6.0)
 ```
 
 
