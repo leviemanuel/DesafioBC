@@ -19,28 +19,30 @@
                 <input type="submit" value="Buscar" class="btn btn-danger" />
             </div>
         </div>
-        </div>
+    </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        Descrição
-                    </th>
-                    <th>
-                        Dt. Vencimento
-                    </th>
-                    <th>
-                        Dt. Pagamento
-                    </th>
-                    <th>
-                        Valor Total
-                    </th>
-                </tr>
-            </thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    Dt. Vencimento
+                </th>
+                <th>
+                    Dt. Pagamento
+                </th>
+                <th>
+                    Valor Total
+                </th>
+            </tr>
+        </thead>
+        @if (Model.LancamentosDiarios != null)
+        {
             <tbody>
                 @foreach (var item in Model.LancamentosDiarios)
                 {
@@ -62,13 +64,13 @@
                             @if (item.flCredito)
                             {
                                 <div style="color:forestgreen">
-                                    @Html.Raw(item.vlTotal.ToString("#,##0.00"))
+                                    @Html.Raw(item.vlLancamento.ToString("#,##0.00"))
                                 </div>
                             }
                             else
                             {
                                 <div style="color:darkred">
-                                    @Html.Raw((item.vlTotal *-1).ToString("#,##0.00"))
+                                    @Html.Raw((item.vlLancamento *-1).ToString("#,##0.00"))
                                 </div>
                             }
 
@@ -83,7 +85,7 @@
                     </td>
                     <td>
                         @{
-                            float total = Model.LancamentosDiarios.Sum(item => item.flCredito ? item.vlTotal : (item.vlTotal * -1));
+                            float total = Model.LancamentosDiarios.Sum(item => item.flCredito ? item.vlLancamento : (item.vlLancamento * -1));
                             if (total < 0)
                             {
                                 <div style="color:darkred">
@@ -100,5 +102,6 @@
                     </td>
                 </tr>
             </tfoot>
-        </table>
+        }
+    </table>
 </form>

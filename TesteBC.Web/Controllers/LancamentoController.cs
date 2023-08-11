@@ -46,7 +46,8 @@ namespace TesteBC.Web.Controllers
 
             var lancamento = new LancamentoModel();
 
-            lancamento.entidades = (response.Result.Select(e => new SelectListItem() { Value = e.idEntidade.ToString(), Text = e.nome, Selected = (e.idEntidade == lancamento.entidadeId) })).AsEnumerable();
+            if (response.Result != null)
+                lancamento.entidades = (response.Result.Select(e => new SelectListItem() { Value = e.idEntidade.ToString(), Text = e.nome, Selected = (e.idEntidade == lancamento.entidadeId) })).AsEnumerable();
 
             return View(lancamento);
         }
@@ -67,8 +68,14 @@ namespace TesteBC.Web.Controllers
             else
             {
                 var response = await _EntidadeService.BuscaTodos();
-                Lancamento.entidades = (response.Result.Select(e => new SelectListItem() { Value = e.idEntidade.ToString(), Text = e.nome, Selected = (e.idEntidade == Lancamento.entidadeId) })).AsEnumerable();
-                Lancamento.errorMessage = "Dados inválidos";
+
+                if (response.Result != null)
+                {
+                    Lancamento.entidades = (response.Result.Select(e => new SelectListItem() { Value = e.idEntidade.ToString(), Text = e.nome, Selected = (e.idEntidade == Lancamento.entidadeId) })).AsEnumerable();
+                    Lancamento.errorMessage = "Dados inválidos";
+                }
+                else
+                    Lancamento.errorMessage = "Dados inválidos - Cadastre Entidades para poder cadastrar Lançamentos";
 
                 return View(Lancamento);
             }
