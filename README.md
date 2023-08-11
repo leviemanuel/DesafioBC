@@ -74,7 +74,7 @@ Após isso, navegue até a pasta do projeto Web e, abrindo um powershell na past
 ```
 dotnet run
 ```
-Você pode acessá-lo pelo caminho: <b>https://localhost:7092/swagger/index.html</b>
+Você pode acessá-lo pelo caminho: <b>https://localhost:7034/Lancamento/LancamentoLista</b>
 
 
 Mas se quiser testar pelo projeto de testes, navegue até a pasta dele e execute o seguinte comando:
