@@ -54,13 +54,24 @@ namespace TesteBC.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> LancamentoCreate(LancamentoModel Lancamento)
         {
-            Lancamento.idLancamento = Guid.NewGuid();
-            var response = await _LancamentoService.Adiciona(Lancamento);
+            if (ModelState.IsValid)
+            {
+                Lancamento.idLancamento = Guid.NewGuid();
+                var response = await _LancamentoService.Adiciona(Lancamento);
 
-            if (response.FlSuccess)
-                return RedirectToAction("LancamentoLista");
+                if (response.FlSuccess)
+                    return RedirectToAction("LancamentoLista");
+                else
+                    return View("~/Views/Shared/ErrorDetail.cshtml", new ErrorDetailModel(response.ErrorMessage, response.StatusCode));
+            }
             else
-                return View("~/Views/Shared/ErrorDetail.cshtml", new ErrorDetailModel(response.ErrorMessage, response.StatusCode));
+            {
+                var response = await _EntidadeService.BuscaTodos();
+                Lancamento.entidades = (response.Result.Select(e => new SelectListItem() { Value = e.idEntidade.ToString(), Text = e.nome, Selected = (e.idEntidade == Lancamento.entidadeId) })).AsEnumerable();
+                Lancamento.errorMessage = "Dados inválidos";
+
+                return View(Lancamento);
+            }
         }
 
         public async Task<IActionResult> LancamentoAlter(Guid id)

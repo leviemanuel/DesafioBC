@@ -13,7 +13,7 @@ namespace TesteBC.Api.Models.DTO
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(14, ErrorMessage = "Tamanho máximo é de 14 caracteres")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage ="Apenas números")]
+        [RegularExpression("([0-9][0-9]*)", ErrorMessage ="Apenas números")]
         public string? Documento { get; set; } = null;
 
         [Required(ErrorMessage = "Campo obrigatório")]

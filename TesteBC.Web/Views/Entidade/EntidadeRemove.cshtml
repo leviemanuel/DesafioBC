@@ -11,10 +11,10 @@
 
     <form asp-action="EntidadeRemove">
         <dl class="row">
-            <dt class="col-sm-2">
+            <dt class="col-sm-2"style="display: none">
                 @Html.DisplayNameFor(model => model.idEntidade)
             </dt>
-            <dd class="col-sm-10">
+            <dd class="col-sm-10"style="display: none">
                 @Html.DisplayFor(model => model.idEntidade)
                 <input asp-for="idEntidade" class="form-control" style="display: none" />
             </dd>
@@ -54,6 +54,8 @@
                 <input asp-for="flAtivo" class="form-control" style="display: none" />
             </dd>
         </dl>
+        <h3>Removendo a entidade, você removerá também TODOS os lançamentos atribuídos a ela.</h3>
+
         <input type="submit" value="Remover" class="btn btn-danger" /> 
         <br />
         <br />

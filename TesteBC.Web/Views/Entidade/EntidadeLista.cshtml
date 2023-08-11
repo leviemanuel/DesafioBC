@@ -31,29 +31,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null && Model.Count() > 0)
         {
-            <tr>
-                <td style="display: none">
-                    @Html.DisplayFor(modelItem => item.idEntidade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipoPessoa)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.documento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.flAtivo)
-                </td>
-                <td>
-                    @Html.ActionLink("Alterar", "EntidadeAlter", new {id = item.idEntidade}) |
-                    @Html.ActionLink("Remover", "EntidadeRemove", new {id = item.idEntidade})
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.idEntidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipoPessoa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.documento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.flAtivo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Alterar", "EntidadeAlter", new {id = item.idEntidade}) |
+                        @Html.ActionLink("Remover", "EntidadeRemove", new {id = item.idEntidade})
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

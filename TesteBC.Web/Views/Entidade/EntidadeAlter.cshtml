@@ -10,9 +10,9 @@
     <div class="col-md-4">
         <form asp-action="EntidadeAlter">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display: none">
                 <label asp-for="idEntidade" class="control-label"></label>
-                <input asp-for="idEntidade" class="form-control"  />
+                <input asp-for="idEntidade" class="form-control" />
                 <span asp-validation-for="idEntidade" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,6 +40,9 @@
                     <input class="form-check-input" asp-for="flAtivo" /> @Html.DisplayNameFor(model => model.flAtivo)
                 </label>
             </div>
+            <br />
+            <div class="text-danger">@Model.errorMessage</div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>

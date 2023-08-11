@@ -7,6 +7,9 @@ using TesteBC.Service.Interfaces;
 
 namespace TesteBC.Api.Controllers
 {
+    ///<Summary>
+    /// Controller referente aos Lançamentos
+    ///</Summary>
     [Route("api/[controller]")]
     [ApiController]
     public class LancamentoController : Controller
@@ -14,17 +17,27 @@ namespace TesteBC.Api.Controllers
         private readonly IMapper _mapper;
         private readonly ILancamentoService _service;
 
+        ///<Summary>
+        /// Cosntrutor
+        ///</Summary>
         public LancamentoController(IMapper mapper, ILancamentoService service)
         {
             _mapper = mapper;
             _service = service;
         }
 
-
+        /// <summary>
+        /// Busca todos os lançamentos cadastrados
+        /// </summary>
+        /// <returns>Lista de todos os lançamentos</returns>
+        /// <response code="200">Retorna os lançamentos</response>
+        /// <response code="204">Caso não encontre lançamento algum</response>
+        /// <response code="500">Em caso de erro</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 204)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<List<LancamentoReadDTO>>>> BuscaLancamentos()
         {
             try
@@ -43,10 +56,18 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Busca lançamento com o código informado
+        /// </summary>
+        /// <param name="id">Id (GUID) do lançamento</param>
+        /// <returns>Retorna o lançamento do id informado</returns>
+        /// <response code="200">Retorna o lançamento do id enviado</response>
+        /// <response code="204">Caso não encontre lançamento algum</response>
+        /// <response code="500">Em caso de erro</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<LancamentoReadDTO>), 204)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<LancamentoReadDTO>>> BuscaLancamento(Guid id)
         {
             try
@@ -65,10 +86,17 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Insere o lançamento passado
+        /// </summary>
+        /// <param name="lancto">Lançamento a ser inserido</param>
+        /// <response code="201">Retorna sucesso</response>
+        /// <response code="400">Caso algum dado esteja inválido</response>
+        /// <response code="500">Em caso de erro catastrófico</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 400)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<LancamentoReadDTO>>> InsereLancamento(LancamentoCreateDTO lancto)
         {
             try
@@ -98,10 +126,18 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Altera o lançamento enviado
+        /// </summary>
+        /// <param name="id">Id (GUID) do lançamento a ser alterado</param>
+        /// <param name="lancto">Lançamento com os novos valores</param>
+        /// <response code="204">Retorna sucesso</response>
+        /// <response code="400">Caso algum dado esteja inválido</response>
+        /// <response code="500">Em caso de erro catastrófico</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 400)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<LancamentoReadDTO>>> AtualizaLancamento(Guid id, LancamentoUpdateDTO lancto)
         {
             try
@@ -113,7 +149,7 @@ namespace TesteBC.Api.Controllers
                     if (original == null)
                         return Ok(new BCAPIDefaultResponse<LancamentoReadDTO>(System.Net.HttpStatusCode.NotFound, result: null));
 
-                    if (original.idLancamento != lancto.idLancamento)
+                    if (original.IdLancamento != lancto.IdLancamento)
                         return BadRequest(new BCAPIDefaultResponse<LancamentoReadDTO>(System.Net.HttpStatusCode.BadRequest, "Dados inválidos"));
 
                     _mapper.Map(lancto, original);
@@ -132,10 +168,17 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Remove lançamento
+        /// </summary>
+        /// <param name="id">Id (GUID) do lançamento a removido</param>
+        /// <response code="204">Retorna sucesso</response>
+        /// <response code="400">Caso algum dado esteja inválido</response>
+        /// <response code="500">Em caso de erro catastrófico</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 400)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<LancamentoReadDTO>> RemoveLancamento(Guid id)
         {
             try

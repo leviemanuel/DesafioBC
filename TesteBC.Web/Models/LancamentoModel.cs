@@ -10,7 +10,7 @@ namespace TesteBC.Web.Models
 
         [Display(Name = "Descrição", AutoGenerateFilter = false)]
         [Required(ErrorMessage = "Campo obrigatório")]
-        [StringLength(300, ErrorMessage = "Tamanho máximo é de 300 caracteres")]
+        [StringLength(100, ErrorMessage = "Tamanho máximo é de 300 caracteres")]
         public string? descricao { get; set; }
 
         [Display(Name = "Dt. Vencimento", AutoGenerateFilter = false)]
@@ -33,7 +33,8 @@ namespace TesteBC.Web.Models
         public string vlLancamento_ptbr
         {
             get { return vlLancamento.ToString("#,##0.00"); }
-            set { vlLancamento = decimal.Parse(value.Replace(",", ".").Replace(".", ",")); }
+            set
+            { if (vlLancamento != decimal.Parse(value)) vlLancamento = decimal.Parse(value.Replace(",", ".").Replace(".", ",")); }
         }
 
         [Display(Name = "Vl. Desconto", AutoGenerateFilter = false)]
@@ -73,24 +74,30 @@ namespace TesteBC.Web.Models
         public bool flCredito { get; set; }
 
         [Display(Name = "Código de Barras", AutoGenerateFilter = false)]
+        [StringLength(48, ErrorMessage = "Tamanho máximo é de 48 caracteres")]
         public string? codBarras { get; set; }
 
         [Display(Name = "Instituição Emissora", AutoGenerateFilter = false)]
+        [StringLength(100, ErrorMessage = "Tamanho máximo é de 100 caracteres")]
         public string? instituicaoEmissora { get; set; }
 
         [Display(Name = "Agência", AutoGenerateFilter = false)]
+        [StringLength(10, ErrorMessage = "Tamanho máximo é de 10 caracteres")]
         public string? agencia { get; set; }
 
         [Display(Name = "Conta Corrente", AutoGenerateFilter = false)]
-        public string? contaCorrente { get; set; }
 
-        [Display(Name = "Entidade", AutoGenerateFilter = false)]
-        public Guid entidadeId { get; set; }
+        [StringLength(20, ErrorMessage = "Tamanho máximo é de 20 caracteres")]
+        public string? contaCorrente { get; set; }
 
         [Required]
         [Display(Name = "Entidade", AutoGenerateFilter = false)]
-        public string entidadeNome { get; set; }
+        public Guid entidadeId { get; set; }
 
-        public IEnumerable<SelectListItem> entidades { get; set;}
+        public string? entidadeNome { get; set; } = "";
+
+        public IEnumerable<SelectListItem>? entidades { get; set; } = null;
+
+        public string? errorMessage { get; set; }
     }
 }

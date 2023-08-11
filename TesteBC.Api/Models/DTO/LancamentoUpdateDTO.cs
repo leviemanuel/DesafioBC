@@ -5,7 +5,7 @@ namespace TesteBC.Api.Models.DTO
     public class LancamentoUpdateDTO
     {
         [Required]
-        public Guid idLancamento { get; set; }
+        public Guid IdLancamento { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(100, ErrorMessage = "Tamanho máximo é de 100 caracteres")]

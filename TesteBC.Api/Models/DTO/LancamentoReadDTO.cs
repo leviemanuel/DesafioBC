@@ -2,7 +2,7 @@
 {
     public class LancamentoReadDTO
     {
-        public Guid idLancamento { get; set; }
+        public Guid IdLancamento { get; set; }
         public string? Descricao { get; set; }
         public DateTime DtVencimento { get; set; }
         public DateTime DtPagamento { get; set; }

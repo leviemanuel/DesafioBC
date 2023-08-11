@@ -38,7 +38,7 @@ namespace TesteBC.Infrastructure.Repositories
 
         public async Task<LancamentoModel> BuscaLancamento(Guid id)
         {
-            return await _dbContext.Lancamentos.FirstOrDefaultAsync(t => t.idLancamento == id);
+            return await _dbContext.Lancamentos.FirstOrDefaultAsync(t => t.IdLancamento == id);
         }
     }
 }

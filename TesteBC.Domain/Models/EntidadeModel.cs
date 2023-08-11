@@ -6,7 +6,7 @@ namespace TesteBC.Domain.Models
     {
         [Key]
         [Required]
-        public Guid idEntidade { get; set; } = new Guid();
+        public Guid IdEntidade { get; set; } = new Guid();
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [MaxLength(300, ErrorMessage = "Tamanho máximo é de 300 caracteres")]

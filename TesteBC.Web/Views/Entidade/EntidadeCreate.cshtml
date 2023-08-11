@@ -40,6 +40,9 @@
                     <input class="form-check-input" asp-for="flAtivo" /> @Html.DisplayNameFor(model => model.flAtivo)
                 </label>
             </div>
+            <br />
+            <div class="text-danger">@Model.errorMessage</div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>

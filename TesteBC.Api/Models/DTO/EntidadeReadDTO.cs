@@ -2,7 +2,7 @@
 {
     public class EntidadeReadDTO
     {
-        public Guid idEntidade { get; set; }
+        public Guid IdEntidade { get; set; }
         public string? Nome { get; set; }
         public bool FlPessoaFisica { get; set; }
         public string? Documento { get; set; }

@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="descricao" class="control-label"></label>
-                <input asp-for="descricao" class="form-control" />
+                <input asp-for="descricao" class="form-control" onkeypress="ChangeItem()" />
                 <span asp-validation-for="descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -99,12 +99,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="entidadeId" class="control-label"></label>
-                <select asp-for="entidadeId" id="ddlEntidades" asp-items="@Model.entidades" style="width:100%;">
+                <select asp-for="entidadeId" id="ddlEntidades" asp-items="@Model.entidades" style="width:100%;" onchange="ChangeItem()">
                     <option value="0">Selecione...</option>
                 </select>
-                <span asp-validation-for="entidadeId" class="text-danger"></span>
+                <span class="text-danger" id="msgErroEntidade">Informe a Entidade</span>
             </div>
             <br />
+            <div class="text-danger">@Model.errorMessage</div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
@@ -117,10 +118,12 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
 <script>
-        function KeyUp(txtPtBr, txtEnUs)
+    function KeyUp(txtPtBr, txtEnUs)
     {
             var ptbr = document.getElementById(txtPtBr);
             var valor = ptbr.value.replace('.', '').replace(',', '.');
@@ -128,6 +131,17 @@
             var enUS = document.getElementById(txtEnUs);
             enUS.value = valor;
             enUS.value = valor;
-    }
+    };
+
+    function ChangeItem()
+    {
+        var item = document.getElementById('ddlEntidades');
+
+        if(item.value === "0")
+            document.getElementById('msgErroEntidade').style.display = 'block';
+
+        else
+            document.getElementById('msgErroEntidade').style.display = 'none';
+    };
 </script>
 

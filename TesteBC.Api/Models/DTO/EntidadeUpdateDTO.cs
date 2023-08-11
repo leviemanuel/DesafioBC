@@ -5,7 +5,7 @@ namespace TesteBC.Api.Models.DTO
     public class EntidadeUpdateDTO
     {
         [Required]
-        public Guid idEntidade { get; set; }
+        public Guid IdEntidade { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(300, ErrorMessage = "Tamanho máximo é de 300 caracteres")]

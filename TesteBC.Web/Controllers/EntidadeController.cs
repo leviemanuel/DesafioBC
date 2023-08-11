@@ -48,7 +48,11 @@ namespace TesteBC.Web.Controllers
             if (response.FlSuccess)
                 return RedirectToAction("EntidadeLista");
             else
-                return View("~/Views/Shared/ErrorDetail.cshtml", new ErrorDetailModel(response.ErrorMessage, response.StatusCode));
+            {
+                entidade.errorMessage = response.ErrorMessage;
+                return View(entidade);
+            }
+
         }
 
         public async Task<IActionResult> EntidadeAlter(Guid id)
@@ -66,10 +70,13 @@ namespace TesteBC.Web.Controllers
         {
             var response = await _entidadeService.Atualiza(entidade);
 
-            if (response == null)
+            if (response != null && response.FlSuccess)
                 return RedirectToAction("EntidadeLista");
             else
-                return View("~/Views/Shared/ErrorDetail.cshtml", new ErrorDetailModel(response.ErrorMessage, response.StatusCode));
+            {
+                entidade.errorMessage = response.ErrorMessage;
+                return View(entidade);
+            }
         }
 
         public async Task<IActionResult> EntidadeRemove(Guid id)
@@ -90,7 +97,10 @@ namespace TesteBC.Web.Controllers
             if (response.FlSuccess)
                 return RedirectToAction("EntidadeLista");
             else
-                return View("~/Views/Shared/ErrorDetail.cshtml", new ErrorDetailModel(response.ErrorMessage, response.StatusCode));
+            {
+                entidade.errorMessage = response.ErrorMessage;
+                return View(entidade);
+            }
         }
     }
 }

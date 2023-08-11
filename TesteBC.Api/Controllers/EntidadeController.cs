@@ -7,6 +7,9 @@ using TesteBC.Service.Interfaces;
 
 namespace TesteBC.Api.Controllers
 {
+    ///<Summary>
+    /// Controller referente as Entidades (Favorecidos)
+    ///</Summary>
     [Route("api/[controller]")]
     [ApiController]
     public class EntidadeController : Controller
@@ -14,6 +17,10 @@ namespace TesteBC.Api.Controllers
         private readonly IMapper _mapper;
         private readonly IEntidadeService _service;
 
+
+        ///<Summary>
+        /// Construtor
+        ///</Summary>
         public EntidadeController(IMapper mapper, IEntidadeService service)
         {
             _mapper = mapper;
@@ -21,10 +28,17 @@ namespace TesteBC.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Busca todas as entidades cadastradas
+        /// </summary>
+        /// <returns>Retorna objeto contendo todas as entidades da base</returns>
+        /// <response code="200">Retorna as entidades</response>
+        /// <response code="204">Caso não encontre nenhuma entidade</response>
+        /// <response code="500">Em caso de erro</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 204)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<List<EntidadeReadDTO>>>> BuscaEntidades()
         {
             try
@@ -43,10 +57,18 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Busca lançamentos diários
+        /// </summary>
+        /// <param name="id">Id (GUID) da entidade</param>
+        /// <returns>Retorna o lançamento do id informado</returns>
+        /// <response code="200">Retorna a entidade referente ao id passado</response>
+        /// <response code="204">Caso não encontre entidade alguma</response>
+        /// <response code="500">Em caso de erro</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 204)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<EntidadeReadDTO>>> BuscaEntidade(Guid id)
         {
             try
@@ -65,10 +87,17 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Insere entidade
+        /// </summary>
+        /// <param name="entidade">Nova entidade</param>
+        /// <response code="201">Retorna sucesso</response>
+        /// <response code="400">Caso algum dado esteja inválido</response>
+        /// <response code="500">Em caso de erro catastrófico</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 400)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<EntidadeCreateDTO>>> InsereEntidade(EntidadeCreateDTO entidade)
         {
             try
@@ -96,10 +125,18 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Busca lançamentos diários
+        /// </summary>
+        /// <param name="id">Id (GUID) da entidade a ser atalizada</param>
+        /// <param name="entidade">Entidade com os novos valores</param>
+        /// <response code="204">Retorna sucesso</response>
+        /// <response code="400">Caso algum dado esteja inválido</response>
+        /// <response code="500">Em caso de erro catastrófico</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 400)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<EntidadeUpdateDTO>>> AtualizaEntidade(Guid id, [FromBody] EntidadeUpdateDTO entidade)
         {
             try
@@ -111,7 +148,7 @@ namespace TesteBC.Api.Controllers
                     if (original == null)
                         return BadRequest(new BCAPIDefaultResponse<EntidadeUpdateDTO>(System.Net.HttpStatusCode.BadRequest, "Dados inválidos"));
 
-                    if (original.idEntidade != entidade.idEntidade)
+                    if (original.IdEntidade != entidade.IdEntidade)
                         return BadRequest(new BCAPIDefaultResponse<EntidadeUpdateDTO>(System.Net.HttpStatusCode.BadRequest, "Dados inválidos"));
 
                     _mapper.Map(entidade, original);
@@ -129,10 +166,17 @@ namespace TesteBC.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta entidade
+        /// </summary>
+        /// <param name="id">Id (GUID) da entidade</param>
+        /// <response code="204">Retorna sucesso</response>
+        /// <response code="400">Caso algum dado esteja inválido</response>
+        /// <response code="500">Em caso de erro catastrófico</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 400)]
+        [ProducesResponseType(typeof(BCAPIDefaultResponse<object>), 500)]
         public async Task<ActionResult<BCAPIDefaultResponse<EntidadeReadDTO>>> RemoveEntidade(Guid id)
         {
             try

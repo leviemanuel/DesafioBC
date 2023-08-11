@@ -1,5 +1,4 @@
-﻿
-using Moq;
+﻿using Moq;
 using TesteBC.Domain.Models;
 using TesteBC.Infrastructure.Repositories.Interfaces;
 using TesteBC.Service;
@@ -77,7 +76,8 @@ namespace TesteBC.Tests
         {
             Guid id = new Guid();
 
-            var lancto = new EntidadeModel() { idEntidade = id };
+            var lancto = new EntidadeModel() { IdEntidade = id };
+            //Inserir outro
 
             _mockLanctoRepo.Setup(r => r.BuscaEntidade(id)).ReturnsAsync(lancto);
 

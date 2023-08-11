@@ -6,7 +6,7 @@ namespace TesteBC.Web.Models
     public class APIResponse<T>
     {
         [JsonProperty("flSuccess")]
-        public bool FlSuccess { get; set; } = true;
+        public bool FlSuccess { get; set; }
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = string.Empty;

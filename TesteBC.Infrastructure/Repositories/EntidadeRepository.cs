@@ -43,7 +43,7 @@ namespace TesteBC.Infrastructure.Repositories
 
         public async Task<EntidadeModel?> BuscaEntidade(Guid id)
         {
-            return await _dbContext.Entidades.FirstOrDefaultAsync(t => t.idEntidade == id);
+            return await _dbContext.Entidades.FirstOrDefaultAsync(t => t.IdEntidade == id);
         }
 
         public async Task<EntidadeModel?> BuscaEntidadePorDocumento(string doc)

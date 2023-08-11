@@ -76,7 +76,7 @@ namespace TesteBC.Tests
         {
             Guid id = new Guid();
 
-            var lancto = new LancamentoModel() { idLancamento = id };
+            var lancto = new LancamentoModel() { IdLancamento = id };
 
             _mockLanctoRepo.Setup(r => r.BuscaLancamento(id)).ReturnsAsync(lancto);
 

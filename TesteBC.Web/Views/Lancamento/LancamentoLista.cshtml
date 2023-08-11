@@ -58,56 +58,60 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td style="display: none">
-                @Html.DisplayFor(modelItem => item.idLancamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dtVencimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dtPagamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.vlLancamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.vlDesconto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.vlJurosMora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.vlEncargos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.flCredito)
-            </td>
-            <td style="display: none">
-                @Html.DisplayFor(modelItem => item.codBarras)
-            </td>
-            <td style="display: none">
-                @Html.DisplayFor(modelItem => item.instituicaoEmissora)
-            </td>
-            <td style="display: none">
-                @Html.DisplayFor(modelItem => item.agencia)
-            </td>
-            <td style="display: none">
-                @Html.DisplayFor(modelItem => item.contaCorrente)
-            </td>
-            <td style="display: none">
-                @Html.DisplayFor(modelItem => item.entidadeId)
-            </td>
-            <td>
-                @Html.ActionLink("Alterar", "LancamentoAlter", new {id = item.idLancamento}) |
-                @Html.ActionLink("Detalhes", "LancamentoDetail" , new {id = item.idLancamento}) |
-                @Html.ActionLink("Remover", "LancamentoRemove" , new {id = item.idLancamento}) )
-            </td>
-        </tr>
-}
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.idLancamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dtVencimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dtPagamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vlLancamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vlDesconto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vlJurosMora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vlEncargos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.flCredito)
+                    </td>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.codBarras)
+                    </td>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.instituicaoEmissora)
+                    </td>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.agencia)
+                    </td>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.contaCorrente)
+                    </td>
+                    <td style="display: none">
+                        @Html.DisplayFor(modelItem => item.entidadeId)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Alterar", "LancamentoAlter", new {id = item.idLancamento}) |
+                        @Html.ActionLink("Detalhes", "LancamentoDetail" , new {id = item.idLancamento}) |
+                        @Html.ActionLink("Remover", "LancamentoRemove" , new {id = item.idLancamento}) )
+                    </td>
+                </tr>
+            }   
+            }
     </tbody>
 </table>

@@ -17,6 +17,10 @@ namespace TesteBC.Api.Profiles
                  );
             CreateMap<LancamentoUpdateDTO, LancamentoModel>();
             CreateMap<LancamentoModel, LancamentoReadDTO>();
+            CreateMap<LancamentoUpdateDTO, LancamentoReadDTO>();
+            CreateMap<LancamentoReadDTO, LancamentoReadDTO>();
+            CreateMap<LancamentoCreateDTO, LancamentoReadDTO>();
+            CreateMap<LancamentoReadDTO, LancamentoCreateDTO>();
 
             CreateMap<LancamentoModel, LancamentosDiarioDTO>().ForMember(lanctoDTO => lanctoDTO.Nome, opt => opt.MapFrom(lancto => lancto.Entidade.Nome));
         }

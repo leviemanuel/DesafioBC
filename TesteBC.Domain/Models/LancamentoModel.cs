@@ -6,7 +6,7 @@ namespace TesteBC.Domain.Models
     {
         [Key]
         [Required]
-        public Guid idLancamento { get; set; } = new Guid();
+        public Guid IdLancamento { get; set; } = new Guid();
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo é de 100 caracteres")]
@@ -48,6 +48,6 @@ namespace TesteBC.Domain.Models
         [Required]
         public Guid EntidadeId { get; set; }
 
-        public virtual EntidadeModel? Entidade { get; set; }
+        public virtual EntidadeModel Entidade { get; set; }
     }
 }
